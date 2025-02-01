@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -59,11 +61,18 @@ public class ConfigTest {
         return driver;
     }
 
+    @BeforeMethod
     public void LaunchApplication() throws IOException, InterruptedException {
         driver = initializeBrowser();
-        // Open Flipkart
+        // Launch the Flipkart application
         driver.get("https://www.flipkart.com");
         // Wait for the page to load
         Thread.sleep(3000);
+    }
+
+    @AfterMethod
+    public  void QuitBrowser(){
+        // Close the browser after the test
+        driver.quit();
     }
 }

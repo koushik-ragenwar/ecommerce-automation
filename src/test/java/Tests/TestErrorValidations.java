@@ -1,22 +1,19 @@
 package Tests;
 
-import PageObject.CartPage;
 import PageObject.ProductCatalogue;
 import PageObject.ProductPage;
 import PageObject.SearchPage;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
 
-import java.io.IOException;
 import java.util.List;
 
-public class TestEndToEndShopping extends ConfigTest {
+public class TestErrorValidations extends ConfigTest{
 
     @Test
-    public void testShoppingFlow() throws InterruptedException, IOException {
-
-
-
+    public void TestErrorMessages() throws InterruptedException {
         // Step 2: Search for the product
         SearchPage searchPage = new SearchPage(getDriver());  // Use getDriver() to fetch the initialized WebDriver
         searchPage.SearchItems("IPHONE 16 BLACK 128GB");
@@ -34,11 +31,9 @@ public class TestEndToEndShopping extends ConfigTest {
 
         // Step 4: Check and add the product to the cart
         ProductPage productPage = new ProductPage(getDriver());
-        productPage.checkAndAddToCart("411052");  // Example pincode
+        productPage.checkPincodeAvailability("000000");
 
-        // Step 5: Proceed to the Cart and place the order
-        CartPage cartPage = new CartPage(getDriver());
-        cartPage.proceedWithOrder();  // Click on 'Place Order' button
-
+        // Step 5: Validate Error Message
+        Assert.assertEquals(productPage.ErrorMessage(), "Not a valid pincode");
     }
 }

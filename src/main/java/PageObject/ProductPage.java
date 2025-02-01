@@ -31,7 +31,12 @@ public class ProductPage extends Timers {
     @FindBy(xpath = "//button[text()='Add to cart' or @class='QqFHMw vslbG+ In9uk2 JTo6b7']")
     WebElement addToCartButton;  // Locator for the 'Add to Cart' button
 
+    @FindBy(xpath = "//div[@class='nyRpc8']")
+    WebElement errorMessage;  // Locator for the 'Add to Cart' button
+
     By availabilityMessageBy = By.xpath("//div[text()='Faster delivery by' or contains(text(), 'Delivery by')]");  // XPath to identify the availability message element
+
+    By availabilityErrorMessageBy = By.xpath("(//div[@class='nyRpc8'])[1]");  // XPath to identify the Invalid PinCode Error Message
 
     // **Method to Check Pincode Availability**
     public boolean checkPincodeAvailability(String pincode) throws InterruptedException {
@@ -46,10 +51,20 @@ public class ProductPage extends Timers {
         checkPincodeButton.click();
 
         // Wait for the availability message to appear
-        waitForElementToAppear(availabilityMessageBy);
+        try {
+            waitForElementToAppear(availabilityMessageBy);
+        } catch (Exception e) {
+            waitForElementToAppear(availabilityErrorMessageBy);
+        }
+
 
         // Return true if the availability message is displayed (indicating that the product is available for delivery)
-        return availabilityMessage.isDisplayed();
+        try {
+            return availabilityMessage.isDisplayed();
+        } catch (Exception e) {
+            return driver.findElement(availabilityErrorMessageBy).isDisplayed();
+        }
+
     }
 
     // **Method to Add Product to Cart**
@@ -68,5 +83,10 @@ public class ProductPage extends Timers {
         } else {
             System.out.println("Product is not available for this pincode.");  // Log if the product is unavailable for the pincode
         }
+    }
+
+    public String ErrorMessage() throws InterruptedException {
+        waitForElementToAppear(availabilityErrorMessageBy);
+        return errorMessage.getText();
     }
 }
