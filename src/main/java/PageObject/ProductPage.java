@@ -52,16 +52,20 @@ public class ProductPage extends Timers {
 
         // Wait for the availability message to appear
         try {
+            Thread.sleep(2000);
             waitForElementToAppear(availabilityMessageBy);
         } catch (Exception e) {
+            Thread.sleep(2000);
             waitForElementToAppear(availabilityErrorMessageBy);
         }
 
 
         // Return true if the availability message is displayed (indicating that the product is available for delivery)
         try {
+            Thread.sleep(2000);
             return availabilityMessage.isDisplayed();
         } catch (Exception e) {
+            Thread.sleep(2000);
             return driver.findElement(availabilityErrorMessageBy).isDisplayed();
         }
 
