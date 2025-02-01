@@ -1,0 +1,9 @@
+[
+  {
+    "TestCase": "testShoppingFlow",
+    "Product": "IPHONE 16 BLACK 128GB",
+    "SearchedData" : "Apple iPhone 16 (Black, 128 GB)",
+    "PinCode": "411052",
+    "InvalidPinCode": "000000"
+  }
+]

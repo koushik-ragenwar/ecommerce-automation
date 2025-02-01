@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Ecommerce Automation Suite">
+    <groups>
+        <run>
+            <exclude name="Regression">
+            </exclude>
+        </run>
+    </groups>
+
+    <!-- Test 1: End-to-End Shopping Flow -->
+    <test thread-count="5" name="E2E Shopping Test">
+        <classes>
+            <class name="Tests.TestEndToEndShopping">
+                <methods>
+                    <include name="testShoppingFlow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Test 2: Error Validations -->
+    <test thread-count="5" name="Error Validation Test">
+        <classes>
+            <class name="Tests.TestErrorValidations">
+                <methods>
+                    <include name="TestErrorMessages"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

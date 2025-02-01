@@ -34,7 +34,7 @@ public class ProductPage extends Timers {
     @FindBy(xpath = "//div[@class='nyRpc8']")
     WebElement errorMessage;  // Locator for the 'Add to Cart' button
 
-    By availabilityMessageBy = By.xpath("//div[text()='Faster delivery by' or contains(text(), 'Delivery by')]");  // XPath to identify the availability message element
+    By availabilityMessageBy = By.xpath("//div[text()='Faster delivery by' or contains(text(), 'Delivery by') or contains(text(), 'Delivery in')]");  // XPath to identify the availability message element
 
     By availabilityErrorMessageBy = By.xpath("(//div[@class='nyRpc8'])[1]");  // XPath to identify the Invalid PinCode Error Message
 
