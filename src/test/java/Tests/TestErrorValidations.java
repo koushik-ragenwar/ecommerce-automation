@@ -3,6 +3,7 @@ package Tests;
 import PageObject.ProductCatalogue;
 import PageObject.ProductPage;
 import PageObject.SearchPage;
+import Utilities.ConfigTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;

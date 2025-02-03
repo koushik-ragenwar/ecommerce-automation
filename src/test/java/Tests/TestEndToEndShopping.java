@@ -4,6 +4,8 @@ import PageObject.CartPage;
 import PageObject.ProductCatalogue;
 import PageObject.ProductPage;
 import PageObject.SearchPage;
+import Utilities.ConfigTest;
+import Utilities.Retry;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -25,8 +27,8 @@ public class TestEndToEndShopping extends ConfigTest {
         return new Object[][]  {{data.getFirst()}};
     }
 
-    @Test(dataProvider="getData",groups = {"Sanity"})
-    public void testShoppingFlow(HashMap<String,String> input) throws InterruptedException, IOException {
+    @Test(dataProvider="getData",groups = {"Sanity"}, retryAnalyzer = Retry.class)
+    public void TestShoppingFlow(HashMap<String,String> input) throws InterruptedException, IOException {
 
         // Step 1: Initialize SearchPage and perform a product search using provided product name
         SearchPage searchPage = new SearchPage(getDriver());  // Fetch the initialized WebDriver
@@ -52,7 +54,7 @@ public class TestEndToEndShopping extends ConfigTest {
         cartPage.proceedWithOrder();  // Click on 'Place Order' button
     }
 
-    @Test(dataProvider = "getData", dependsOnMethods = {"testShoppingFlow"}, groups = {"Regression"})
+    @Test(dataProvider = "getData", dependsOnMethods = {"TestShoppingFlow"}, groups = {"Regression"}, retryAnalyzer = Retry.class)
     public void TestValidations(HashMap<String,String> input) throws InterruptedException {
         // Step 1: Initialize SearchPage and perform a product search using provided product name
         SearchPage searchPage = new SearchPage(getDriver());  // Fetch the initialized WebDriver
@@ -74,6 +76,6 @@ public class TestEndToEndShopping extends ConfigTest {
         productPage.checkPincodeAvailability(input.get("InvalidPinCode"));  // Example of entering an invalid pincode
 
         // Step 5: Validate that the error message for the incorrect pincode is displayed
-        Assert.assertEquals(productPage.ErrorMessage(), "Not a valid pincode");
+        Assert.assertEquals(productPage.ErrorMessage(), "N");//ot a valid pincode
     }
 }

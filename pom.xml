@@ -44,6 +44,14 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.16.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+
     </dependencies>
     <groupId>koushikragenwar</groupId>
     <artifactId>e-commerce-automation</artifactId>
