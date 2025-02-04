@@ -30,9 +30,9 @@ public class ConfigTest {
     public WebDriver initializeBrowser() throws IOException {
         Properties prop = new Properties();
         FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/Config.properties");
-        prop.load(file);
 
-        String browserName = prop.getProperty("browser").toLowerCase().trim();
+        prop.load(file);
+        String browserName =System.getProperty("browser")!=null ? System.getProperty("browser") : prop.getProperty("browser").toLowerCase().trim();
 
         switch (browserName) {
             case "safari":

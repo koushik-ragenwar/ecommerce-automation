@@ -76,6 +76,6 @@ public class TestEndToEndShopping extends ConfigTest {
         productPage.checkPincodeAvailability(input.get("InvalidPinCode"));  // Example of entering an invalid pincode
 
         // Step 5: Validate that the error message for the incorrect pincode is displayed
-        Assert.assertEquals(productPage.ErrorMessage(), "N");//ot a valid pincode
+        Assert.assertEquals(productPage.ErrorMessage(), "Not a valid pincode");//
     }
 }
