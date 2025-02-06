@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -41,6 +42,7 @@ public class ConfigTest {
                 WebDriverManager.chromedriver().setup();
                 options.addArguments("headless");
                 driver = new ChromeDriver(options);
+                driver.manage().window().setSize(new Dimension(1440, 900));
                 break;
             case "safari":
                 driver = new SafariDriver();  // No need for WebDriverManager
