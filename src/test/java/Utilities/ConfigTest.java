@@ -42,7 +42,6 @@ public class ConfigTest {
                 options.addArguments("headless");
                 driver = new ChromeDriver(options);
                 break;
-
             case "safari":
                 driver = new SafariDriver();  // No need for WebDriverManager
                 break;
