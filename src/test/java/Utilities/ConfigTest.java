@@ -8,6 +8,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,6 +36,13 @@ public class ConfigTest {
         String browserName =System.getProperty("browser")!=null ? System.getProperty("browser") : prop.getProperty("browser").toLowerCase().trim();
 
         switch (browserName) {
+            case "chromeheadless":
+                ChromeOptions options = new ChromeOptions();
+                WebDriverManager.chromedriver().setup();
+                options.addArguments("headless");
+                driver = new ChromeDriver(options);
+                break;
+
             case "safari":
                 driver = new SafariDriver();  // No need for WebDriverManager
                 break;
