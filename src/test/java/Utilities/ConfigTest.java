@@ -98,6 +98,6 @@ public class ConfigTest {
         File source = ts.getScreenshotAs(OutputType.FILE);
         File file = new File(System.getProperty("user.dir") + "/Reports/" + testCaseName + ".png");
         FileUtils.copyFile(source, file);
-        return System.getProperty("user.dir") + "/Reports/" + testCaseName + ".png"; // Fixed "usr.dir" typo
+        return System.getProperty("user.dir") + "/Reports/" + testCaseName + ".png";
     }
 }
